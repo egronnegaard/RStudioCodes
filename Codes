@@ -1,0 +1,60 @@
+# Chapter 1:
+
+## Creating a ggplot:
+* geom_"style", there are more than 30 types to choose from, use google to find the appropriate
+* ggplot(data = choice) + geom_point(mapping = aes(x = choiceofx, y = choiceofy, size = sizeofvar, color = colorclassification, linetype = choice))
+
+## Facet Wraps: splitting data into several plots (facets)
+* ggplot(data = choice) + geom_point(maping = aes(x = xofchoice, y = yofchoice)) + facet_wrap(~ class, nrow = choice))
+* alternatively use facet_grid() for using two variables, separated by ~
+
+## Coordinate Systems: ggplot2
+* coord_flip()      # switches x-y axes
+* coord_quickmap()  # sets tge aspect rtio correctily for map 
+* coord_polar()     # uses polar coordinates (connection between bar and Coxcomb cgart
+
+# Chapter 3: Data Transformation with `dplyr`
+* Take carefull notes with the conflicts that are printed when a package is loaded. If there are conflicts, use the full command dplyr::functionname()
+
+## Basics: positioning: 1) argument is a data frame, 2( describve what you want to do with the data, 3 the result is a new data frame
+* filter()        # pick observations by their values
+* arrange()       # reorder the rows
+* select()        # pick variables by their names 
+  - starts_with("abc")    # matches names that begin with "abc"
+  - ends_with("abc")      # matches names that end with "abc"
+  - contains("abc")       # matches bamnes that contain "abc"
+  - matches("(.)//1")     # selects variables that match a regular expression
+  - num_arrange("x", 1:3) # matches x1, x2, and x3
+* mutate()        # create new variables with functions of existing vcariables
+  - transmute()           # if you only want to keep the new variable
+* summarize()     # collapse manu values down to a signle summary
+  -  na.rm = TRUE         # removes na's before computation
+* is.na()         # determine uf a value is missing
+
+## Useful Summary Functions
+* mean()            # compute average
+* median()          # compute median
+* sd()              # spread: standard deviation
+* IQR()             # spread: interquartile range
+* mad()             # spread: median absolute deviation
+* min()             # minimum
+* max()             # maximum
+* quantile(x, 0.25) # quartiles
+* first()           # first value of variable
+* nth(x. 2)         # n'th value of variable (here 2nd)
+* last()            # last value of variable
+* n()               # size of the current group
+* sum(!is.na())     # number of non-missing vlues
+* n_distinct()      # coybt the number of destinct values in a given variable
+
+### Chunk for standardizing per group metrics
+popular_dataset %>% 
+  filter(something > 0) %>%
+  mutatae(prop_something = something / sum(something)) %>%
+  select(material of interest)
+
+## Grouping by Multiple Variables: each summary peels of one level of the grouping
+* group_by(xvar, yvar, zvar, etc)
+* ungroup()                       # remove grouping, and return operations on ungrouped data!
+
+# Chapter 5: Exploratory Data Analysis
