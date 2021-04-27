@@ -57,4 +57,26 @@ popular_dataset %>%
 * group_by(xvar, yvar, zvar, etc)
 * ungroup()                       # remove grouping, and return operations on ungrouped data!
 
-# Chapter 5: Exploratory Data Analysis
+# Chapter 5: Exploratory Data Analysis - The systematic way to use visualization and transformations to explore your data
+
+1. generate questions about your data
+2. search for answers by visualizing, transforming, and modeling your data
+3. use what you learn to refine your questions and/or generate new questions
+
+## Variation
+* Visualize the distributrion of a variable (depending on whether continuous or categorical)
+
+### Chunk for categorical data
+ggplot(data = yourdata) +
+  geom_bar(mapping = aes(x = cut))
+  
+### Chunk for continuous data
+ggplot(data = yourdata) +
+  geom_histogram(mapping = aes(x = xofchoice), binwidth = 0.5)
+  
+  # For multiple histograms, recommendation is:
+  ggplot(data = yourdata, mapping = aes(x = xofchoise, color = choice)) +
+    geom_freqpoly(binwidth = 0.1)
+    
+ ## Covariation: behavior between variables
+ 
